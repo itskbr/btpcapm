@@ -1,0 +1,34 @@
+### To Create New Employee
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+  "nameFirst": "Ahamed",
+  "nameMiddle": null,
+  "nameLast": "Kabir",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "PhoneNumber": null,
+  "email": "ahamed.a@danfoss.com",
+  "loginName": "AhamedA",
+  "Currency_code": "INR",
+  "salaryAmount": 68597,
+  "accountNumber": "7299483410",
+  "bankId": "8527412596",
+  "bankName": "ICICI Bank"
+}
+
+### GET to Read Data
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet/ba3e2e9c-31ed-46b9-a96f-0fa1e8392b69
+
+### PATCH to update employee data
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/ba3e2e9c-31ed-46b9-a96f-0fa1e8392b69
+Content-Type: application/json
+
+{
+  "salaryAmount": 500000
+}
+
+### DELETE to delete employee data
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/ba3e2e9c-31ed-46b9-a96f-0fa1e8392b69
