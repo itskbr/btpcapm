@@ -32,3 +32,16 @@ Content-Type: application/json
 
 ### DELETE to delete employee data
 DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/ba3e2e9c-31ed-46b9-a96f-0fa1e8392b69
+
+
+### Read single PO
+GET http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052
+
+###Update Amount in PO
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052/boost
+Content-Type: application/json
+
+{}
+
+### Calling CAP Function
+GET http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DF5E052/largestOrder()
