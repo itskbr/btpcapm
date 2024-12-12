@@ -25,3 +25,6 @@ http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2C0
 
 ### Get the PO and its Item together - Association
 http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2C052?$expand=Items
+
+### V2 Adapter call
+http://localhost:4004/v2/odata/v4/CatalogService/EmployeeSet

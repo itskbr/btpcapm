@@ -1,5 +1,11 @@
 module.exports = cds.service.impl(async function(){
-     const {POs} = this.entities;
+     const {POs, EmployeeSet} = this.entities;
+//Generic Handler - For Validation Purpose
+     this.before(['CREATE','PATCH'], EmployeeSet, (req) =>{
+        if(parseFloat(req.data.salaryAmount) >= 1000000){
+            req.error(500,'Check the Salary Amount');
+        }
+     });
 
     this.on('boost', async(req) => {
          try {

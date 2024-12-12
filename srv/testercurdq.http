@@ -13,7 +13,7 @@ Content-Type: application/json
   "email": "ahamed.a@danfoss.com",
   "loginName": "AhamedA",
   "Currency_code": "INR",
-  "salaryAmount": 68597,
+  "salaryAmount": 2000000,
   "accountNumber": "7299483410",
   "bankId": "8527412596",
   "bankName": "ICICI Bank"
@@ -45,3 +45,12 @@ Content-Type: application/json
 
 ### Calling CAP Function
 GET http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DF5E052/largestOrder()
+
+### Getting Product Data from CDS View
+GET http://localhost:4004/odata/v4/MyService/ProductOrdersSet/74867AD200E41EDBA5D8B06B26EB4052
+
+### Annotation Call - Lazy loading
+GET http://localhost:4004/odata/v4/MyService/ProductOrdersSet/74867AD200E41EDBA5D8B06B26EB4052?$expand=ProductItems
+
+### MetaData
+GET http://localhost:4004/odata/v4/MyService
