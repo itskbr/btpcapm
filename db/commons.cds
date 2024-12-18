@@ -8,7 +8,7 @@ type Gender : String(1) enum{
 }
 
 type AmountT : Decimal(10, 2)@(
-    Semantic.amount.CurrencyCode: 'CURENCY_code',
+    Semantic.amount.CurrencyCode: 'Currency_code',
     Sap.unit: 'CURRENCY_code'
 );
 

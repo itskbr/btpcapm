@@ -32,3 +32,5 @@ entity rentals : cuid, temporal, managed {
     BOOK: Association to master.books;
 }    
 }
+
+    // "@ui5/cli": "^3.0.0",

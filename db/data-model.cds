@@ -76,7 +76,8 @@ context transaction {
         PARTNER_GUID: Association to master.businesspartner;
         LIFECYCLE_STATUS:  String(1);
         OVERALL_STATUS: String(1);
-        Items: Association to many poitems on Items.PARENT_KEY = $self;
+        // Items: Association to many poitems on Items.PARENT_KEY = $self;
+        Items: Composition of many poitems on Items.PARENT_KEY = $self;
     }
     
 
