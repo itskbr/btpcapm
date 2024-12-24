@@ -35,4 +35,10 @@ module.exports = cds.service.impl(async function(){
         }
 
    });
+   this.on('dft_status', async(req, res) => {
+    return {
+        'OVERALL_STATUS': 'N',
+        'LIFECYCLE_STATUS': 'X'
+    };
+   });
 });

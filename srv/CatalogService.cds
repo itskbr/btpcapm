@@ -7,10 +7,12 @@ service CatalogService @(path: 'CatalogService') {
     // @readonly
     entity EmployeeSet as projection on master.employees;
     entity ProductSet as projection on master.product;
+    function dft_status() returns POs;
     
     entity POs @(
         title: 'Purchase order',
         odata.draft.enabled : true,
+        Common.DefaultValuesFunction: 'dft_status'
     ) as projection on transaction.purchaseorder{
         *,
         case OVERALL_STATUS
@@ -33,6 +35,6 @@ service CatalogService @(path: 'CatalogService') {
         function largestOrder() returns POs;
     };
     entity POItems as projection on transaction.poitems;
-
-
 }
+
+

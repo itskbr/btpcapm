@@ -21,12 +21,14 @@
     "watch-purchaseorderapp": "cds watch --open purchaseorderapp/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-po_application": "cds watch --open po_application/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-ahamed": "cds watch --open ahamed/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-ahamed": "cds watch --open ahamed/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-test1": "cds watch --open test1/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/purchaseorderapp",
     "app/po_application",
     "app/project1",
-    "app/ahamed"
+    "app/ahamed",
+    "app/test1"
   ]
 }

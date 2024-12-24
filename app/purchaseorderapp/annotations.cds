@@ -1,7 +1,9 @@
-using CatalogService as service from '../../srv/CatalogService';
+using CatalogService.POs as service from '../../srv/CatalogService';
 annotate CatalogService.POs with @(
 
+
 UI : {
+    // Filter 
     SelectionFields           : [
         PO_ID,
         GROSS_AMOUNT,
@@ -11,8 +13,9 @@ UI : {
     ],
     LineItem                  : [
         {
-            $Type : 'UI.DataField',
-            Value : PO_ID,
+            $Type : 'UI.DataField',  
+            Value : PO_ID,          
+            // Label: 'Purchase Order',
         },
         {
             $Type : 'UI.DataField',
@@ -33,6 +36,7 @@ UI : {
         {
             $Type : 'UI.DataField',
             Value : CURRENCY_code,
+            Label: 'Currency',
         },
         {
             $Type : 'UI.DataField',
@@ -68,8 +72,14 @@ UI : {
             {
                 $Type  : 'UI.ReferenceFacet',
                 Label  : 'More Details',
-                Target : ![@UI.FieldGroup#AnubhavFields]
-            },{
+                Target : ![@UI.FieldGroup#AhamedFields]
+            },
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label : 'Status',
+                Target : ![@UI.FieldGroup#StatusGroup]
+            },
+           {
                 $Type  : 'UI.ReferenceFacet',
                 Label  : 'Amounts',
                 Target : ![@UI.FieldGroup#SecondGroup]
@@ -103,7 +113,18 @@ UI : {
             },
         ]
     },
-    FieldGroup #AnubhavFields : {
+
+    FieldGroup  #StatusGroup: {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : LIFECYCLE_STATUS,
+            },
+        ]
+    },
+
+    FieldGroup #AhamedFields : {
         $Type : 'UI.FieldGroupType',
         Data  : [
             {
@@ -112,21 +133,29 @@ UI : {
             },
             {
                 $Type : 'UI.DataField',
-                Value : PARTNER_GUID_NODE_KEY
+                Value : PARTNER_GUID_NODE_KEY,
+                Label : 'Product' 
             },
-            {
-                $Type : 'UI.DataField',
-                Value : PARTNER_GUID.BP_ID
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : PARTNER_GUID.COMPANY_NAME
-            },
+            // {
+            //     $Type : 'UI.DataField',
+            //     Value : OVERALL_STATUS,
+            //     Label : 'Status'
+            // },
 
-            {
-                $Type : 'UI.DataField',
-                Value : LIFECYCLE_STATUS
-            }
+            // {
+            //     $Type : 'UI.DataField',
+            //     Value : PARTNER_GUID.BP_ID
+            // },
+            // {
+            //     $Type : 'UI.DataField',
+            //     Value : PARTNER_GUID.COMPANY_NAME
+            // },
+
+            // {
+            //     $Type : 'UI.DataField',
+            //     Value : LIFECYCLE_STATUS,
+            //     Label : 'Lifecycle Status'
+            // }
         ]
     },
 }
@@ -134,39 +163,40 @@ UI : {
 
 );
 
-annotate CatalogService.POs with {
-    PARTNER_GUID@(
-        Common : { 
-            Text : PARTNER_GUID.COMPANY_NAME,
-         },
-         ValueList.entity: CatalogService.BusinessPartnerSet
-    )
-};
+// annotate CatalogService.POs with {
+//     PARTNER_GUID@(
+//         Common : { 
+//             Text : PARTNER_GUID.COMPANY_NAME,
+//          },
+//          ValueList.entity: CatalogService.BusinessPartnerSet
+//     )
+// };
 
-annotate CatalogService.POItems with {
-    PRODUCT_GUID@(
-        Common : { 
-            Text : PRODUCT_GUID.DESCRIPTION,
-         },
-         ValueList.entity: CatalogService.ProductSet
-    )
-};
+// annotate CatalogService.POItems with {
+//     PRODUCT_GUID@(
+//         Common : { 
+//             Text : PRODUCT_GUID.DESCRIPTION,
+//          },
+//          ValueList.entity: CatalogService.ProductSet
+//     )
+// };
 
-@cds.odata.valuelist
-annotate CatalogService.BusinessPartnerSet with @(
-    UI.Identification:[{
-        $Type : 'UI.DataField',
-        Value : COMPANY_NAME,
-    }]
-);
+// @cds.odata.valuelist
+// annotate CatalogService.BusinessPartnerSet with @(
+//     UI.Identification:[{
+//         $Type : 'UI.DataField',
+//         Value : COMPANY_NAME,
+//         Label : 'Company',
+//     }]
+// );
 
-@cds.odata.valuelist
-annotate CatalogService.ProductSet with @(
-    UI.Identification:[{
-        $Type : 'UI.DataField',
-        Value : DESCRIPTION,
-    }]
-);
+// @cds.odata.valuelist
+// annotate CatalogService.ProductSet with @(
+//     UI.Identification:[{
+//         $Type : 'UI.DataField',
+//         Value : DESCRIPTION,
+//     }]
+// );
 
 annotate CatalogService.POItems with @(
     UI: {
@@ -213,21 +243,22 @@ annotate CatalogService.POItems with @(
                 Value: PO_ITEM_POS
             }
         },
-        Facets  : [
-            {
-                $Type : 'UI.ReferenceFacet',
-                Target : '@UI.FieldGroup#LineItemHeader',
-                Label : 'More info',
-            },
-            {
-                $Type : 'UI.ReferenceFacet',
-                Target : '@UI.FieldGroup#ProductDetails',
-                Label : 'Product Info',
-            },
-        ],
+        // Facets  : [
+        //     {
+        //         $Type : 'UI.ReferenceFacet',
+        //         Target : '@UI.FieldGroup#LineItemHeader',
+        //         Label : 'More info',
+        //     },
+        //     {
+        //         $Type : 'UI.ReferenceFacet',
+        //         Target : '@UI.FieldGroup#ProductDetails',
+        //         Label : 'Product Info',
+        //     },
+        // ],
         FieldGroup#LineItemHeader  : {
             $Type : 'UI.FieldGroupType',
             Data : [
+
                 {
                     $Type : 'UI.DataField',
                     Value : PO_ITEM_POS,
@@ -257,6 +288,7 @@ annotate CatalogService.POItems with @(
         FieldGroup#ProductDetails  : {
             $Type : 'UI.FieldGroupType',
             Data: [
+
                 {
                     $Type : 'UI.DataField',
                     Value : PRODUCT_GUID.PRODUCT_ID,
@@ -285,3 +317,67 @@ annotate CatalogService.POItems with @(
         },
     }
 );
+
+annotate CatalogService.POs with @(
+
+){
+    
+    PO_ID @title : 'Purchase Order';
+    OVERALL_STATUS @title: 'Overall Status';
+    LIFECYCLE_STATUS @title : 'Lifecycle Status';
+}
+
+annotate CatalogService.BusinessPartnerSet with @(
+
+){
+    
+    COMPANY_NAME @title : 'Company';
+    NODE_KEY @title : 'Product'
+    
+}
+
+annotate CatalogService.AddressSet with @(
+    
+){
+    COUNTRY @title : 'Country';
+};
+
+annotate CatalogService.ProductSet with @(
+ ){
+    PRODUCT_ID @title : 'ProductID'
+ } ;
+ 
+  
+// Value Help
+@cds.odata.valuelist
+annotate service.BusinessPartnerSet with @(
+UI.Identification:[
+    {
+                    $Type : 'UI.DataField',
+                    Value : COMPANY_NAME,
+                }
+]
+);
+@cds.odata.valuelist
+annotate service.ProductSet with  @(
+UI.Identification:[
+    {
+                    $Type : 'UI.DataField',
+                    Value : DESCRIPTION,
+                }
+]
+);
+// After creating value help . we have to link it with the field where the Value help has to appear
+annotate service.POs with {
+    PARTNER_GUID@(
+        common.Text: PARTNER_GUID.COMPANY_NAME,
+        Common.valuelist.entity: service.BusinessPartnerSet
+    );
+};
+
+annotate service.POItems with {
+    PRODUCT_GUID@(
+        common.Text: PRODUCT_GUID.DESCRIPTION,
+        Common.valuelist.entity: service.ProductSet
+    );
+};
