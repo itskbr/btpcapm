@@ -119,6 +119,10 @@ UI : {
         Data : [
             {
                 $Type : 'UI.DataField',
+                Value : OVERALL_STATUS,
+            },
+            {
+                $Type : 'UI.DataField',
                 Value : LIFECYCLE_STATUS,
             },
         ]
@@ -136,11 +140,11 @@ UI : {
                 Value : PARTNER_GUID_NODE_KEY,
                 Label : 'Product' 
             },
-            // {
-            //     $Type : 'UI.DataField',
-            //     Value : OVERALL_STATUS,
-            //     Label : 'Status'
-            // },
+            {
+                $Type : 'UI.DataField',
+                Value : OVERALL_STATUS,
+                Label : 'Status'
+            },
 
             // {
             //     $Type : 'UI.DataField',
@@ -236,7 +240,7 @@ annotate CatalogService.POItems with @(
             TypeNamePlural : 'Items',
             Title:{
                 $Type: 'UI.DataField',
-                Value : NODE_KEY,
+                Value : PRODUCT_GUID_NODE_KEY,
             },
             Description:{
                 $Type : 'UI.DataField',

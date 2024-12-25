@@ -70,8 +70,8 @@ entity product{
 }
 
 context transaction {
-    entity purchaseorder : common.Amount {
-        key NODE_KEY: common.Guid;
+    entity purchaseorder : cuid, common.Amount {
+        // key NODE_KEY: common.Guid;
         PO_ID: String(40);
         PARTNER_GUID: Association to master.businesspartner;
         LIFECYCLE_STATUS:  String(1);
@@ -81,8 +81,8 @@ context transaction {
     }
     
 
-    entity poitems: common.Amount{
-        key NODE_KEY: common.Guid;
+    entity poitems: cuid, common.Amount{
+        // key NODE_KEY: common.Guid;
         PARENT_KEY: Association to purchaseorder;
         PO_ITEM_POS: Integer;
         PRODUCT_GUID:Association to master.product
