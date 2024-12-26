@@ -10,6 +10,7 @@
     "@cap-js/hana": "^1.5.2",
     "@sap/cds": "^8",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "@sap/xssec": "^4.2.7",
     "express": "^4"
   },
   "devDependencies": {
@@ -35,6 +36,42 @@
   "cds": {
     "sql": {
       "native_hana_associations": false
+    },
+    "requires": {
+      "uaa": {
+        "kind": "xsuaa"
+      },
+      "auth": {
+        "[development]": {
+          "strategy": "mocked",
+          "users": {
+            "Employer": {
+              "roles": [
+                "Viewer"
+              ],
+              "userAttributes": {
+                "BankName": [
+                  " "
+                ]
+              }
+            },
+            "Manager": {
+              "roles": [
+                "Viewer",
+                "Admin"
+              ],
+              "userAttributes": {
+                "BankName": [
+                  " "
+                ]
+              }
+            }
+          },
+          "[production]": {
+            "strategy": "JWT"
+          }
+        }
+      }
     }
   }
 }

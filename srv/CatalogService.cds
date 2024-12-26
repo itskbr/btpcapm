@@ -1,11 +1,14 @@
 using { Ahamed.db.master, Ahamed.db.transaction } from '../db/data-model';
 
-service CatalogService @(path: 'CatalogService') {
+service CatalogService @(path: 'CatalogService', requires: 'authenticated-user') {
     @capabilities:{Deletable}
     entity BusinessPartnerSet as projection on master.businesspartner;
     entity AddressSet as projection on master.address;
     // @readonly
-    entity EmployeeSet as projection on master.employees;
+    entity EmployeeSet @(restrict: [ 
+                        { grant: ['READ'], to: 'Viewer', where: 'bankName = $user.BankName' },
+                        { grant: ['WRITE'], to: 'Admin' }
+                        ])as projection on master.employees;
     entity ProductSet as projection on master.product;
     function dft_status() returns POs;
     
