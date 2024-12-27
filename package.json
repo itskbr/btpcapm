@@ -51,7 +51,7 @@
               ],
               "userAttributes": {
                 "BankName": [
-                  " "
+                  "My Bank of London"
                 ]
               }
             },
@@ -62,7 +62,7 @@
               ],
               "userAttributes": {
                 "BankName": [
-                  " "
+                  "$UNRESTRICTED"
                 ]
               }
             }
