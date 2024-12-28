@@ -8,6 +8,7 @@
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.13.8",
     "@cap-js/hana": "^1.5.2",
+    "@sap/approuter": "^18.0.0",
     "@sap/cds": "^8",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
     "@sap/xssec": "^4.2.7",
@@ -15,7 +16,8 @@
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.7.0",
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8"
   },
   "scripts": {
     "start": "cds-serve",
@@ -42,6 +44,9 @@
         "kind": "xsuaa"
       },
       "auth": {
+        "[production]": {
+          "strategy": "JWT"
+        },
         "[development]": {
           "strategy": "mocked",
           "users": {
@@ -66,9 +71,6 @@
                 ]
               }
             }
-          },
-          "[production]": {
-            "strategy": "JWT"
           }
         }
       }
