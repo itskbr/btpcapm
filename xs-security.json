@@ -1,52 +1,52 @@
 {
-  "xsappname": "mycapapp",
-  "scopes": [
-    {
-      "name": "$XSAPPNAME.Viewer",
-      "description": "can view data using this scope"
-    },
-    {
-      "name": "$XSAPPNAME.Admin",
-      "description": "can perform CURD on data using this scope"
-    }
-  ],
-  "attributes": [
-    {
-      "name": "BankName",
-      "description": "Bank Name property",
-      "valueType": "string"
-    }
-  ],
-  "role-templates": [
-    {
-      "name": "Viewer",
-      "description": "View all data from our Catalog service",
-      "default-role-name": "Viewer: Authorized to Read All Data",
-      "scope-references": [
-        "$XSAPPNAME.Viewer"
-      ],
-      "attribute-references": [
-        {
-          "name": "BankName"
-        }
-      ]
-    },
-    {
-      "name": "Admin",
-      "description": "Edit, delete all data from service",
-      "scope-references": [
-        "$XSAPPNAME.Admin"
-      ]
-    }
-  ],
-  "authorities": [
-    "$ACCEPT_GRANTED_AUTHORITIES"
-  ],
-  "oauth2-configuration": {
-    "token-validity": 900,
-    "refresh-token-validity": 1800,
-    "redirect-uris": [
-      "https://api.cf.us10-001.hana.ondemand.com/login/callback"
-    ]
+ "xsappname": "capmapp",
+ "scopes": [
+  {
+   "name": "$XSAPPNAME.Viewer",
+   "description": "can view data using this scope"
+  },
+  {
+   "name": "$XSAPPNAME.Admin",
+   "description": "can perform CURD on data using this scope"
   }
+ ],
+ "attributes": [
+  {
+   "name": "BankName",
+   "description": "Bank Name property",
+   "valueType": "string"
+  }
+ ],
+ "role-templates": [
+  {
+   "name": "Viewer",
+   "description": "View all data from our Catalog service",
+   "default-role-name": "Viewer: Authorized to Read All Data",
+   "scope-references": [
+    "$XSAPPNAME.Viewer"
+   ],
+   "attribute-references": [
+    {
+     "name": "BankName"
+    }
+   ]
+  },
+  {
+   "name": "Admin",
+   "description": "Edit, delete all data from service",
+   "scope-references": [
+    "$XSAPPNAME.Admin"
+   ]
+  }
+ ],
+ "authorities": [
+  "$ACCEPT_GRANTED_AUTHORITIES"
+ ],
+ "oauth2-configuration": {
+  "token-validity": 900,
+  "refresh-token-validity": 1800,
+  "redirect-uris": [
+   "https://api.cf.us10-001.hana.ondemand.com/login/callback"
+  ]
+ }
 }

@@ -11,8 +11,8 @@
     "@sap/approuter": "^18.0.0",
     "@sap/cds": "^8",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
-    "@sap/xssec": "^4.2.7",
-    "express": "^4"
+    "@sap/xssec": "^3",
+    "passport": "^0"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.7.0",
@@ -22,56 +22,44 @@
   "scripts": {
     "start": "cds-serve",
     "fcap": "cds watch",
-    "watch-purchaseorderapp": "cds watch --open purchaseorderapp/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-po_application": "cds watch --open po_application/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-ahamed": "cds watch --open ahamed/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-test1": "cds watch --open test1/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-purchaseorderapp": "cds watch --open purchaseorderapp/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
-    "app/purchaseorderapp",
-    "app/po_application",
-    "app/project1",
-    "app/ahamed",
-    "app/test1"
+    "app/purchaseorderapp"
   ],
   "cds": {
-    "sql": {
-      "native_hana_associations": false
-    },
     "requires": {
-      "uaa": {
-        "kind": "xsuaa"
+      "db": "hana",
+      "auth": "xsuaa"
+    },
+    "[development]": {
+      "strategy": "mocked",
+      "users": {
+        "Employer": {
+          "roles": [
+            "Viewer"
+          ],
+          "userAttributes": {
+            "BankName": [
+              "My Bank of London"
+            ]
+          }
+        },
+        "Manager": {
+          "roles": [
+            "Viewer",
+            "Admin"
+          ],
+          "userAttributes": {
+            "BankName": [
+              "$UNRESTRICTED"
+            ]
+          }
+        }
       },
       "auth": {
         "[production]": {
           "strategy": "JWT"
-        },
-        "[development]": {
-          "strategy": "mocked",
-          "users": {
-            "Employer": {
-              "roles": [
-                "Viewer"
-              ],
-              "userAttributes": {
-                "BankName": [
-                  "My Bank of London"
-                ]
-              }
-            },
-            "Manager": {
-              "roles": [
-                "Viewer",
-                "Admin"
-              ],
-              "userAttributes": {
-                "BankName": [
-                  "$UNRESTRICTED"
-                ]
-              }
-            }
-          }
         }
       }
     }
